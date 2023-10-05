@@ -1,0 +1,28 @@
+version: '3'
+services:
+  php:
+    image: php:8-fpm-alpine
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './src:/var/www/html'
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - './src:/var/www/html'
+      - './docker/nginx/conf.d:/etc/nginx/conf.d'
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: messenger
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: root
+    volumes:
+      - './docker/volume/mysql:/var/lib/mysql'
