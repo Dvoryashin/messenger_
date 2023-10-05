@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <title>Simple AJAX - GET REQUEST</title>
-    <script src="https:// om/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="scripts/is_user_true.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script type="module" src="scripts/is_user_true.js"></script>
     <script type="module" src="scripts/modules/cookies/get_cookie.js"></script>
+    <script type="module" src="scripts/messenger.js"></script>
+    <script type="module" src="scripts/find_user.js"></script>
   </head>
   <body>
     <input type="text" name="searched_user" id="searched_user">
@@ -15,63 +17,5 @@
 
   </body>
   <script>
-    function get_cookie(cookie){
-        var result = undefined
-        var cookies = document.cookie.split(' ') 
-        cookies.forEach(function(el){
-          var el_list = el.split('=')
-          if (el_list[0] == cookie){
-            el_list = el_list[1].split('')
-            if (el != cookies[cookies.length-1]){
-              el_list.pop(el_list.length-1)
-            }
-            result = el_list.join('')
-            result = decodeURIComponent(result)
-          }
-        });
-        return result
-    }
-
-    function is_user_true(){
-      var true_user_name = get_cookie('true_user_name')
-      var true_user_password = get_cookie('true_user_password')
-      $.ajax({
-        method: "POST",
-        url: "backend/is_user_true.php",
-        data: { is_user_true: true_user_name, is_password_true: true_user_password}
-      })
-      .done(function(msg) {
-        if (msg != 1){
-          window.location = 'http://localhost/signin.html'
-        }
-        else{
-          console.log('можете проходить')
-        }
-      });
-    }
-
-    function find_user() {
-
-      var searched_user = document.getElementById('searched_user').value
-      $.ajax({
-        method: "POST",
-        url: "backend/find_user.php",
-        data: { searched_user: searched_user}
-      })
-      .done(function(msg) {
-        if (msg == 1){
-          window.location = 'http://localhost/profile.html'
-        }else{
-          console.log(msg)
-          console.log('такого пользователя нет')
-        }
-      });
-
-    }
-    window.onload = function() {
-      is_user_true()
-      var find_user_btn = document.getElementById('find_user_btn')
-      find_user_btn.onclick = find_user
-    }
   </script>
 </html>

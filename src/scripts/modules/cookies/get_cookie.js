@@ -1,15 +1,16 @@
 export default function get_cookie(cookie){
-    // console.log('ggg')
     var result = undefined
-    var cookies = document.cookie.split(' ')
+    var cookies = document.cookie.split(' ') 
     cookies.forEach(function(el){
-       var el_list = el.split('=')
-       if (el_list[0] == cookie){
-           el_list = el_list[1].split('')
-           el_list.pop(el_list.length)
-        // console.log(el_list[0])
-           result = el_list[0]
-       }
+      var el_list = el.split('=')
+      if (el_list[0] == cookie){
+        el_list = el_list[1].split('')
+        if (el != cookies[cookies.length-1]){
+          el_list.pop(el_list.length-1)
+        }
+        result = el_list.join('')
+        result = decodeURIComponent(result)
+      }
     });
     return result
 }
