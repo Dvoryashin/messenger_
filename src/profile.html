@@ -4,27 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="module" src="scripts/html's_js/profile.js"></script>
 </head>
 <body>
     типо профиль
-    <script>
-    function get_cookie(cookie){
-        var result = undefined
-        var cookies = document.cookie.split(' ') 
-        cookies.forEach(function(el){
-          var el_list = el.split('=')
-          if (el_list[0] == cookie){
-            el_list = el_list[1].split('')
-            if (el != cookies[cookies.length-1]){
-              el_list.pop(el_list.length-1)
-            }
-            result = el_list.join('')
-            result = decodeURIComponent(result)
-          }
-        });
-        return result
-    }
-    
-    </script>
+    <p id="profile_name">чо-то не так</p>
+    <input type="button" value="Написать" id="new_chat_btn">
 </body>
 </html>

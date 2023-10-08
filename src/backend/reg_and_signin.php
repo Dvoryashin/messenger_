@@ -11,6 +11,11 @@ if (isset($_POST['reg_name']) && isset($_POST['reg_psw'])){
         header("Location: http://localhost/same_name.html");
     }else{
         mysqli_query($messenger, "INSERT INTO users (name, password) VALUES ('".$name."', '".$password_hash."');");
+        if (isset($_COOKIE['true_user_name']) and isset($_COOKIE['true_user_password'])){
+            header('Location: http://localhost/already_logged_in.html');
+        }
+        setcookie('true_user_name', $name, time()+24*1*60*60, '/');
+        setcookie('true_user_password', $password_from_table, time()+24*1*60*60, '/');
         header('Location: http://localhost/messenger.html');
     }
 }
