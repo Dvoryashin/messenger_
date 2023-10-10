@@ -1,7 +1,7 @@
 import get_cookie from "./modules/cookies/get_cookie.js";
 
-export default function is_user_true(){
-  var true_user_name = get_cookie('true_user_name')
+export default function is_user_true(name){
+  var true_user_name = name
   var true_user_password = get_cookie('true_user_password')
   $.ajax({
     method: "POST",
