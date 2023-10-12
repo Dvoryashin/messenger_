@@ -10,17 +10,25 @@ export function show_chats(user){
         chats = chats.split('|')
         chats = new Set(chats)
         chats = Array.from(chats)
+        const chats_div = document.querySelector('.chats')
         for (var i=0; i<chats.length; i+=1){
             const chat = document.createElement('p')
+            chat.className = 'chat'
             chat.textContent = chats[i]
             chat.onclick = function(){
+                var chat_clone = document.querySelectorAll('.chat')
+                chat_clone.forEach(chat => {
+                    chat.style.color = 'black'
+                })
+                chat.style.color = 'green'
                 show_messages(user, chat.textContent)
+                var messages_area = document.querySelector('.messages_area')
+                messages_area.remove()
             }
             chat.onmouseover = function(){
                 chat.style.cursor = "pointer";
             }
-            const body = document.querySelector('body')
-            body.appendChild(chat)
+            chats_div.appendChild(chat)
         }
     });
 }
