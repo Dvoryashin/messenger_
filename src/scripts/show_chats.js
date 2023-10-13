@@ -1,4 +1,6 @@
 import { show_messages } from "./show_messages.js";
+import { set_cookie } from "./modules/cookies/set_cookie.js";
+import get_cookie from "./modules/cookies/get_cookie.js";
 export function show_chats(user){
     $.ajax({
         method: "POST",
@@ -16,14 +18,20 @@ export function show_chats(user){
             chat.className = 'chat'
             chat.textContent = chats[i]
             chat.onclick = function(){
+                set_cookie('companion', chat.textContent)
                 var chat_clone = document.querySelectorAll('.chat')
                 chat_clone.forEach(chat => {
                     chat.style.color = 'black'
                 })
                 chat.style.color = 'green'
-                show_messages(user, chat.textContent)
-                var messages_area = document.querySelector('.messages_area')
-                messages_area.remove()
+                const intervalId = setInterval(() => {
+                    if(get_cookie('companion') == chat.textContent){
+                        show_messages(user, chat.textContent)
+                    }
+                    else{
+                        clearInterval(intervalId)
+                    }
+                }, 100);
             }
             chat.onmouseover = function(){
                 chat.style.cursor = "pointer";
@@ -32,3 +40,4 @@ export function show_chats(user){
         }
     });
 }
+

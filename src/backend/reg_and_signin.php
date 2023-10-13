@@ -14,8 +14,8 @@ if (isset($_POST['reg_name']) && isset($_POST['reg_psw'])){
         if (isset($_COOKIE['true_user_name']) and isset($_COOKIE['true_user_password'])){
             header('Location: http://localhost/already_logged_in.html');
         }
-        setcookie('true_user_name', $name, time()+24*1*60*60, '/');
-        setcookie('true_user_password', $password_from_table, time()+24*1*60*60, '/');
+        setcookie('true_user_name', $name, time()+24*10*60*60, '/');
+        setcookie('true_user_password', $password_from_table, time()+24*10*60*60, '/');
         header('Location: http://localhost/messenger.html');
     }
 }
@@ -30,8 +30,8 @@ if(isset($_POST['signin_name']) && isset($_POST['signin_psw'])){
         $password_from_table = mysqli_fetch_array($password_from_table)['password'];
         if (password_verify($password, $password_from_table) == 1){
             
-            setcookie('true_user_name', $name, time()+24*1*60*60, '/');
-            setcookie('true_user_password', $password_from_table, time()+24*1*60*60, '/');
+            setcookie('true_user_name', $name, time()+24*10*60*60, '/');
+            setcookie('true_user_password', $password_from_table, time()+24*10*60*60, '/');
             header('Location: http://localhost/messenger.html');
         }
         else{

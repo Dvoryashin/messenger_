@@ -8,11 +8,15 @@
     <script type="module" src="scripts/modules/cookies/get_cookie.js"></script>
     <script type="module" src="scripts/html's_js/messenger.js"></script>
     <script type="module" src="scripts/find_user.js"></script>
+    <script type="module" src="./scripts/send_message.js"></script>
     <!-- <script type="module" src="scripts/show_chats.js"></script> -->
   </head>
   <body>
     <input type="text" name="searched_user" id="searched_user">
-    <button value="Найти пользователя" id="find_user_btn"></button>
+    <button id="find_user_btn">Найти пользователя</button>
+
+    <input style="float:right" type="textarea" id="message_text" placeholder="Введите сообщение...">
+    <button style="float:right" id="send_message">Отправить</button>
 
     <div id="container"></div>
     <div class="chats"></div>

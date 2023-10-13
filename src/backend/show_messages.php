@@ -56,7 +56,47 @@ if(isset($_POST['user1']) and isset($_POST['user2'])){
     foreach($user2_messages_ids as $message){
         array_push($result[2], 'his');
     }
+    function sort_by_id($list){
+        $new_list = [];
+        $smallest_id = 0;
+        $smallest_el = $list[0];
+        $i = 0;
+        // foreach($list[0] as $el=>$id){
+        //     foreach($list[0] as $el2=>$id2){
+        //         var_dump($el2);
+        //     }
+            
+        // }
+        $len = count($list[0]);
+        $swapped = False;
+        while ($i < $len - 1){
+            $i2 = 0;
+            $i++;
+            while ($i2 < $len - 1){
+                if($list[0][$i2] > $list[0][$i2+1]){
+                    $swapped = True;
+                    $temp = $list[0][$i2];
+                    $list[0][$i2] = $list[0][$i2+1];
+                    $list[0][$i2+1] = $temp;
 
+                    $temp = $list[1][$i2];
+                    $list[1][$i2] = $list[1][$i2+1];
+                    $list[1][$i2+1] = $temp;
+
+                    $temp = $list[2][$i2];
+                    $list[2][$i2] = $list[2][$i2+1];
+                    $list[2][$i2+1] = $temp;
+                }
+                $i2++;
+            }
+            if($swapped != True){
+                // var_dump($list);
+                return $list;
+            }
+        }
+        return $list;
+    }
+    $result = sort_by_id($result);
     // echo json_encode($user1_messages_ids);
     // echo json_encode($user2_messages_ids);
     // array_push($result[0], '\||n}}8890093984930498003092111203948');

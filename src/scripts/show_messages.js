@@ -7,6 +7,10 @@ export function show_messages(user1, user2){
     })
     .done(function(msg) {
         var messages = JSON.parse(msg)
+        var amount = document.querySelectorAll('.messages_area')
+        if (amount.length > 0){
+            document.querySelector('.messages_area').remove()
+        }
         const body = document.querySelector('body')
         const messages_area = document.createElement('div')
         messages_area.className = 'messages_area'
