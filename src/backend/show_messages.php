@@ -83,9 +83,9 @@ if(isset($_POST['user1']) and isset($_POST['user2'])){
                     $list[1][$i2] = $list[1][$i2+1];
                     $list[1][$i2+1] = $temp;
 
-                    $temp = $list[2][$i2];
-                    $list[2][$i2] = $list[2][$i2+1];
-                    $list[2][$i2+1] = $temp;
+                    // $temp = $list[2][$i2];
+                    // $list[2][$i2] = $list[2][$i2+1];
+                    // $list[2][$i2+1] = $temp;
                 }
                 $i2++;
             }
@@ -96,13 +96,15 @@ if(isset($_POST['user1']) and isset($_POST['user2'])){
         }
         return $list;
     }
+    // array_pop($result[2]);
+    // array_pop($result[2]);
+    array_pop($result[2]);
     $result = sort_by_id($result);
     // echo json_encode($user1_messages_ids);
     // echo json_encode($user2_messages_ids);
     // array_push($result[0], '\||n}}8890093984930498003092111203948');
     // array_push($result[1], '\||n}}8890093984930498003092111203948');
     // array_push($result[2], '\||n}}8890093984930498003092111203948');
-    
     echo json_encode($result);
 }
 ?>

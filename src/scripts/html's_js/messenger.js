@@ -38,7 +38,6 @@ window.onload = function() {
     send_message_btn.onclick = function(){
         send_message(message.value, user, get_cookie('companion'))
         show_messages(user, get_cookie('companion'))
-        var add_message = document.query
     }
     find_user_btn.onclick = find_user
     console.log('имя не должно содержать знак |')

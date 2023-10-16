@@ -8,9 +8,8 @@ export function show_messages(user1, user2){
         data: { user1: user1, user2: user2 }
     })
     .done(function(msg) {
+        console.log(msg)
         var messages = JSON.parse(msg)
-        messages[2].pop()
-        messages[2].pop()
         console.log(messages)
         var message_html = document.querySelectorAll('.message')
         var messages_area = document.querySelector('.messages_area')
@@ -18,11 +17,12 @@ export function show_messages(user1, user2){
         console.log(messages[0].length, len)
         console.log(messages_area)
         if(messages[0].length > len){
-            for(var i = 0; i < messages[0].length - len; i++){
+            for(var i = 0; i < messages[0].length - message_html.length; i++){
                 var message = document.createElement('h1')
                 message.className = 'message'
-                message.textContent = messages[1][len+i]
-                if(messages[2][len+i] == 'my'){
+                console.log(messages[1][message_html.length+i])
+                message.textContent = messages[1][message_html.length+i]
+                if(messages[2][message_html.length+i] == 'my'){
                     message.style.color = 'green'
                 }else{
                     message.style.color = 'blue'
@@ -30,7 +30,7 @@ export function show_messages(user1, user2){
                 messages_area.appendChild(message)
             }
         }
-
+        console.log(messages_area)
     });
     
 }
