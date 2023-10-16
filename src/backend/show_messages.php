@@ -18,16 +18,16 @@ if(isset($_POST['user1']) and isset($_POST['user2'])){
     $user2_messages_ids = [];
 
     array_push($user1_messages_ids, []);
-    array_push($user2_messages_ids, []);
-
     array_push($user1_messages_ids, []);
+
+    array_push($user2_messages_ids, []);
     array_push($user2_messages_ids, []);
 
     while ($message = $user1_messages->fetch_assoc()){
         array_push($user1_messages_ids[1], $message['message']);
         array_push($user1_messages_ids[0], $message['id']);
     }
-    // echo "\n";
+
     while ($message = $user2_messages->fetch_assoc()){
         array_push($user2_messages_ids[1], $message['message']);
         array_push($user2_messages_ids[0], $message['id']);
@@ -53,7 +53,7 @@ if(isset($_POST['user1']) and isset($_POST['user2'])){
     foreach($user2_messages_ids[1] as $message){
         array_push($result[1], $message);
     }
-    foreach($user2_messages_ids as $message){
+    foreach($user2_messages_ids[1] as $message){
         array_push($result[2], 'his');
     }
     function sort_by_id($list){
@@ -61,12 +61,7 @@ if(isset($_POST['user1']) and isset($_POST['user2'])){
         $smallest_id = 0;
         $smallest_el = $list[0];
         $i = 0;
-        // foreach($list[0] as $el=>$id){
-        //     foreach($list[0] as $el2=>$id2){
-        //         var_dump($el2);
-        //     }
-            
-        // }
+
         $len = count($list[0]);
         $swapped = False;
         while ($i < $len - 1){
@@ -83,28 +78,19 @@ if(isset($_POST['user1']) and isset($_POST['user2'])){
                     $list[1][$i2] = $list[1][$i2+1];
                     $list[1][$i2+1] = $temp;
 
-                    // $temp = $list[2][$i2];
-                    // $list[2][$i2] = $list[2][$i2+1];
-                    // $list[2][$i2+1] = $temp;
+                    $temp = $list[2][$i2];
+                    $list[2][$i2] = $list[2][$i2+1];
+                    $list[2][$i2+1] = $temp;
                 }
                 $i2++;
             }
             if($swapped != True){
-                // var_dump($list);
                 return $list;
             }
         }
         return $list;
     }
-    // array_pop($result[2]);
-    // array_pop($result[2]);
-    array_pop($result[2]);
     $result = sort_by_id($result);
-    // echo json_encode($user1_messages_ids);
-    // echo json_encode($user2_messages_ids);
-    // array_push($result[0], '\||n}}8890093984930498003092111203948');
-    // array_push($result[1], '\||n}}8890093984930498003092111203948');
-    // array_push($result[2], '\||n}}8890093984930498003092111203948');
     echo json_encode($result);
 }
 ?>
