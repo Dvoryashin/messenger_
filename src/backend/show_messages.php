@@ -27,7 +27,7 @@ if(isset($_POST['user1']) and isset($_POST['user2'])){
         array_push($user1_messages_ids[1], $message['message']);
         array_push($user1_messages_ids[0], $message['id']);
     }
-    echo "\n";
+    // echo "\n";
     while ($message = $user2_messages->fetch_assoc()){
         array_push($user2_messages_ids[1], $message['message']);
         array_push($user2_messages_ids[0], $message['id']);

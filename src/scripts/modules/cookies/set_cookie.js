@@ -5,6 +5,6 @@ export function set_cookie(cookie_name, cookie_value){
         data: { set_cookie_name: cookie_name, set_cookie_value: cookie_value }
     })
     .done(function(msg){
-        console.log(msg)
+
     })
 }
