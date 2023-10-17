@@ -9,6 +9,7 @@ export function show_chats(user){
     })
     .done(function(msg) {
         var chats = msg
+        var messages_area = document.querySelector('.messages_area')
         chats = chats.split('|')
         chats = new Set(chats)
         chats = Array.from(chats)
@@ -18,7 +19,10 @@ export function show_chats(user){
             chat.className = 'chat'
             chat.textContent = chats[i]
             chat.onclick = function(){
-                show_messages(user, chat.textContent)
+                while (messages_area.firstChild) {
+                    messages_area.removeChild(messages_area.firstChild);
+                }
+                show_messages(user, chat.textContent, 1)
                 set_cookie('companion', chat.textContent)
                 var chat_clone = document.querySelectorAll('.chat')
                 chat_clone.forEach(chat => {
@@ -27,17 +31,12 @@ export function show_chats(user){
                 chat.style.color = 'green'
                 const intervalId = setInterval(() => {
                     if(get_cookie('companion') == chat.textContent){
-                        // var amount = document.querySelectorAll('.messages_area')
-                        // if (amount.length > 0){
-                        //     document.querySelector('.messages_area').remove()
-                        // }
-                        show_messages(user, chat.textContent)
+                        show_messages(user, chat.textContent, 0)
                     }
                     else{
                         clearInterval(intervalId)
                     }
                 }, 2000);
-                // show_messages(user, chat.textContent)
             }
             chat.onmouseover = function(){
                 chat.style.cursor = "pointer";
